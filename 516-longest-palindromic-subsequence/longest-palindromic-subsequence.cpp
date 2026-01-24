@@ -4,6 +4,7 @@ public:
         int n = text.size();
         string text2 = text;
         vector<vector<int>> common(n+1,vector<int>(n+1,0));
+        // just similar to lc 1143 , just here second string is reverse of first string
         reverse(text2.begin(),text2.end());
         for(int i=1;i<=n;i++){
             for(int j=1;j<=n;j++){
