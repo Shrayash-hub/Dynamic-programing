@@ -6,6 +6,8 @@ public:
         int ans = 0;
         vector<vector<int>> common(n+1,vector<int>(m+1,0));
 
+        // if the characters are matching we age going to fill 1+ diagonal element
+        // else we are going to fill 0 directly
         for(int i=1;i<=n;i++){
             for(int j=1;j<=m;j++){
                 if(text1[i-1]==text2[j-1]){
