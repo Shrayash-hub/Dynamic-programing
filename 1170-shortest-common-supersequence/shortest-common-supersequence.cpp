@@ -21,7 +21,7 @@ public:
         while (i > 0 && j > 0) {
 
             if (text1[i-1] != text2[j-1]) {
-                if (common[i - 1][j] < common[i][j - 1]) {
+                if (common[i - 1][j] <= common[i][j - 1]) {
                     s += text2[j - 1];
                     j = j - 1;
                 } else {
