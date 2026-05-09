@@ -31,5 +31,11 @@ public:
         }
 
         return (dp[n] - 1 + MOD) % MOD;
+
+
+        /*
+        If current char last appeared at last[ch]: formula is
+            dp[i] = 2×dp[i−1] − dp[last[ch]−1]
+        */
     }
 };
