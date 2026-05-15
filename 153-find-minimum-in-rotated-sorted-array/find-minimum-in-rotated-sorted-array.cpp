@@ -1,21 +1,22 @@
 class Solution {
 public:
-    int findMin(vector<int>& arr) {
+    int findMin(vector<int>& nums) {
+        int n = nums.size();
         int low = 0;
-        int high = arr.size()-1;
-        if(arr[low]<arr[high]){ // means array is already sorted 
-                return arr[low];
-            }
+        int high = nums.size()-1;
+
+        // if nums is already sorted
+        if(nums[low] <= nums[high]) return nums[low];
         while(low<high){
-            int mid = low+(high-low)/2;
-            if(arr[mid]>arr[arr.size()-1]){   // if arr[mid]<=arr[high] , then it means right half is sorted and we will never get mimimum on right side , because values are increasing at that side
-                low = mid+1;
-                  // reduce search space to the left side
+            int mid = low + (high-low)/2;
+            // if right part is not sorted
+            if(nums[mid]>nums[n-1]){
+                low = mid + 1;
             }
             else{
-                high = mid;// and if right part is not sorted than mid can be a break point so min value can be on right half
+                high = mid;
             }
         }
-        return arr[low];
+        return nums[low];
     }
 };
