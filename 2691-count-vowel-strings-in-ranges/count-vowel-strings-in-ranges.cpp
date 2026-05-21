@@ -15,9 +15,7 @@ public:
                 prefix[i] = prefix[i-1];
             }
         }
-        for(auto it: prefix){
-            cout<<it<<" ";
-        }
+        
         vector<int> ans;
         for(auto it: queries){
             int start = it[0];
