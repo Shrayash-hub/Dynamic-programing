@@ -44,38 +44,48 @@ public:
 
 class Solution {
 public:
-    int findGCD(int a, int b) {
-        a = abs(a);
-        b = abs(b);
-        while (b != 0) {
-            int temp = b;
-            b = a % b;
-            a = temp;
-        }
-        return a;
-    }
     int largestComponentSize(vector<int>& nums) {
         int n = nums.size();
-        int mx = *max_element(nums.begin(), nums.end());
 
+        // finding the maximum value in the array
+        int mx = *max_element(nums.begin(), nums.end());
         DisjointSet ds(mx);
 
+        // connecting every number with its factors
         for (int i = 0; i < nums.size(); i++) {
+
+            // checking all factors up to sqrt(number)
             for (int j = 2; j <= sqrt(nums[i]); j++) {
+
+                // If j is a factor
                 if (nums[i] % j == 0) {
+
+                    // connect number with factor j
                     ds.unionBySize(nums[i], j);
+
+                    // connect the paired factor with j
                     ds.unionBySize(nums[i] / j, j);
                 }
             }
         }
 
+        // storing the frequency of each connected component
         unordered_map<int, int> map;
+
+        // lets find the parent of every number
         for (int i = 0; i < nums.size(); ++i) {
+
+            //  getting the representative of the component
             int _x = ds.findUPar(nums[i]);
+
+            // increase the size of this component
             map[_x]++;
         }
 
+        // finding the component with maximum size
         int maxCount = 0;
+
+        // largest component
         for (auto& m : map)
             maxCount = max(maxCount, m.second);
 
