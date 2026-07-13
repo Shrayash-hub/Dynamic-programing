@@ -1,19 +1,24 @@
 class Solution {
 public:
     int tribonacci(int n) {
-        // using dp
-        if(n==0) return 0;
-        if(n==1) return 1;
-        if(n==2) return 1;
-
-        vector<int> previous(n+1);
-
-        previous[0] = 0;
-        previous[1] = 1;
-        previous[2] = 1;
-        for(int i=3;i<=n;i++){
-            previous[i] = previous[i-3] + previous[i-2] + previous[i-1];
-        } 
-        return previous[n];
+        int prev2 = 0;
+        int prev1 = 1;
+        int prev = 1;
+        if (n == 0)
+            return 0;
+        if (n == 1)
+            return prev1;
+        if (n == 2)
+            return prev1;
+        if (n == 3)
+            return prev + prev1;
+        int curr;
+        for (int i = 3; i <= n; i++) {
+            curr = prev + prev1 + prev2;
+            prev2 = prev1;
+            prev1 = prev;
+            prev = curr;
+        }
+        return curr;
     }
 };
